@@ -1,0 +1,31 @@
+name: Build WOWSTARISM CALENDAR
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Nuitka
+        run: pip install nuitka
+
+      - name: Build with Nuitka
+        run: python -m nuitka --onefile --enable-plugin=tk-inter --output-filename=WOWSTARISM_CALENDAR wowstarism_calendar.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WOWSTARISM-CALENDAR-EXE
+          path: WOWSTARISM_CALENDAR.exe
