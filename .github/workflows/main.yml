@@ -22,8 +22,7 @@ jobs:
         run: pip install nuitka
 
       - name: Build with Nuitka
-        run: python -m nuitka --onefile --enable-plugin=tk-inter --output-filename=WOWSTARISM_CALENDAR wowstarism_calendar.py
-
+        run: run: python -m nuitka --onefile --enable-plugin=tk-inter --output-filename=WOWSTARISM_CALENDAR wowstarism_calendar.py
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
